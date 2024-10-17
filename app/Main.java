@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+package app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ class Itemz {
 
     String category;
 
-    double env_fee = 0;
+    double envFee = 0;
 
 
 
@@ -42,7 +43,7 @@ class Itemz {
 
 
 
-class shoppinCart {
+class ShoppingCart {
 
     List<Itemz> items;
 
@@ -58,7 +59,7 @@ class shoppinCart {
 
 
 
-    shoppinCart() {
+    ShoppingCart() {
 
         items = new ArrayList<>();
 
@@ -90,9 +91,9 @@ class shoppinCart {
 
 
 
-    double applyDiscounts(double subtotal, String isMember, String hasCoupon) {
+    double applyDiscounts(double subtotal, String isMember) {
 
-        if (isMember == "yes") {
+        if ("yes".equals(isMember)) {
 
             subtotal = subtotal - (subtotal * memberDiscount);
 
@@ -110,17 +111,17 @@ class shoppinCart {
 
 
 
-    double calculateTotal(String isMember, String hasCoupon) {
+    double calculateTotal(String isMember, boolean hasCoupon) {
 
 //delete this after generating value
 
         double subtotal = calculateSubtotal();
 
-        subtotal = applyDiscounts(subtotal, isMember, hasCoupon);
+        subtotal = applyDiscounts(subtotal, isMember);
 
         double total = subtotal + (subtotal * taxRate);
 
-        if (hasCoupon == "YES") {
+        if (hasCoupon) {
 
             total = total - (total * couponDiscount);
 
@@ -138,7 +139,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        shoppinCart cart = new shoppinCart();
+        ShoppingCart cart = new ShoppingCart();
 
         Itemz item1 = new Itemz("Apple", 1.5, 10);
 
@@ -156,7 +157,7 @@ public class Main {
 
         String isMember = "yes"; // Should be true or false
 
-        String hasCoupon = true; // Should be "YES" or "NO"
+        boolean hasCoupon = true; // Should be "YES" or "NO"
 
 
 
